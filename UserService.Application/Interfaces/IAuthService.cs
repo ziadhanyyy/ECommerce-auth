@@ -11,5 +11,6 @@ namespace UserService.Application.Interfaces
     {
         Task<AuthResponse> RegisterAsync(RegisterRequest request);
         Task<AuthResponse> LoginAsync(LoginRequest request);
+        Task <UserDTO?> GetByIdAsync(Guid id);
     }
 }

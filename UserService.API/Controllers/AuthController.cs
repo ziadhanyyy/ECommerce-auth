@@ -49,5 +49,16 @@ namespace UserService.API.Controllers
                 return Unauthorized(new { message = ex.Message });
             }
         }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult>GetUserById(Guid id)
+        {
+            var user= await _authService.GetByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
     }
 }

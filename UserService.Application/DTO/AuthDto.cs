@@ -9,5 +9,6 @@ namespace UserService.Application.DTO
     public record RegisterRequest(string Email, string name, string Password);
     public record LoginRequest(string Email, string Password);
     public record AuthResponse(string Token);
+    public record UserDTO(Guid id , string Name, string Email);
 
 }

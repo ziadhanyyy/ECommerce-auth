@@ -32,6 +32,14 @@ namespace UserService.Infrastructure.Repositories
             return await connection.QueryFirstOrDefaultAsync<User?>(query, new { email });
 
         }
+
+        public async Task<User?> GetByIdAsync(Guid id)
+        {
+
+            const string query = "SELECT * From users Where id=@id";
+            using var connection = _context.CreateConnection();
+            return await connection.QueryFirstOrDefaultAsync<User?>(query, new { id });
+        }
     }
     }
 

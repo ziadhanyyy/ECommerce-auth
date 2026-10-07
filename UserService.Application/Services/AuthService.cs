@@ -1,4 +1,5 @@
-﻿using UserService.Application.DTO;
+﻿using System.Xml.Linq;
+using UserService.Application.DTO;
 using UserService.Application.Interfaces;
 using UserService.Domain.Entities;
 using UserService.Domain.Interfaces;
@@ -14,6 +15,16 @@ namespace UserService.Application.Services
         {
             _tokenService = tokenService;
             _userRepository = userRepository;
+        }
+
+        public async Task<UserDTO?> GetByIdAsync(Guid id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+            if (user == null)
+            {
+                return null;
+            }
+            return new UserDTO (id : user.Id, Name: user.Name, Email: user.Email) ;
         }
 
         public async Task<AuthResponse> LoginAsync(LoginRequest request)
